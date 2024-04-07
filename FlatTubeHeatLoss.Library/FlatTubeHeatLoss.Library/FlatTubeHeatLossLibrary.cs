@@ -10,7 +10,9 @@ public class FlatTubeHeatLossLibrary(InputData input)
 
     private List<double> _temperatures = new();
 
-    private LinkedList<double> _Qs = new();
+    private List<double> _Qs = new();
+
+    private double _A;
 
     public Report GetReport()
     {
@@ -20,16 +22,20 @@ public class FlatTubeHeatLossLibrary(InputData input)
         {
             CalculateQl();
             CalculateQk();
+
+            var avgQ = _Qs.Average();
+            for (var i = 0; i < input.TubeLayers.Count + 1; i++)
+                CalibrateTemps(avgQ, _Qs[i], i);
         }
-        while (CheckQs());
+        while (!CheckQs());
 
         return new()
         {
             Layers = input.TubeLayers,
-            Alfa = CalculateA(),
+            Alfa = _A,
             Q = _Qs.Average(),
             Accuracy = input.Accuracy,
-            Temperatures = [.. _temperatures, input.SorroundTemp]
+            Temperatures = _temperatures
         };
     }
 
@@ -46,15 +52,16 @@ public class FlatTubeHeatLossLibrary(InputData input)
 
     private double CalculateA()
     {
-        var outterSideTemp = _temperatures[^1];
+        var outterSideTemp = _temperatures[^2];
+        var sorroundTemp = _temperatures[^1];
         return input.TubeOrientationCoeff
             * Pow(outterSideTemp, 1 / 4)
             * (C0
                 * input.E
                 * Abs(Pow(CelciasToKelvin(outterSideTemp), 4)
-                    - Pow(CelciasToKelvin(input.SorroundTemp), 4)
+                    - Pow(CelciasToKelvin(sorroundTemp), 4)
                 )
-                / (outterSideTemp - input.SorroundTemp)
+                / (outterSideTemp - sorroundTemp)
             );
     }
 
@@ -66,6 +73,8 @@ public class FlatTubeHeatLossLibrary(InputData input)
 
         for (var i = 0; i < input.TubeLayers.Count; i++)
             _temperatures.Add(tempStep * (input.TubeLayers.Count - i));
+
+        _temperatures.Add(input.SorroundTemp);
     }
 
     private double CelciasToKelvin(double temp) => temp + 273.3;
@@ -77,32 +86,21 @@ public class FlatTubeHeatLossLibrary(InputData input)
         {
             var ratio = input.TubeLayers[i].Width
                 / input.TubeLayers[i].Material.GetThermalCoeff(_temperatures[i], _temperatures[i + 1]);
-            _Qs.AddFirst((_temperatures[i] - _temperatures[i + 1]) / ratio);
+            _Qs.Add((_temperatures[i] - _temperatures[i + 1]) / ratio);
         }
     }
 
-    private void CalculateQk() => _Qs.AddLast(CalculateA() * (_temperatures[^1] - input.SorroundTemp));
+    private void CalculateQk() => _Qs.Add((_A = CalculateA()) * (_temperatures[^2] - _temperatures[^1]));
 
-    private void CalibrateTemps(double avgQ, double q, int fstTempIndex, int scndTempIndex)
+    private void CalibrateTemps(double avgQ, double q, int tempIndex)
     {
         if (avgQ == q)
             return;
-
-        var difference = Abs(q - avgQ);
-        var ratio = difference / avgQ / 1000;
-        if (q > avgQ)
-        {
-            if (fstTempIndex > 0 && fstTempIndex < _temperatures.Count)
-                _temperatures[fstTempIndex] -= _temperatures[fstTempIndex] * ratio;
-            if (scndTempIndex >= 0 && scndTempIndex < _temperatures.Count)
-                _temperatures[scndTempIndex] += _temperatures[scndTempIndex] * ratio;
-        }
-        else
-        {
-            if (fstTempIndex > 0 && fstTempIndex < _temperatures.Count)
-                _temperatures[fstTempIndex] += _temperatures[fstTempIndex] * ratio;
-            if (scndTempIndex >= 0 && scndTempIndex < _temperatures.Count)
-                _temperatures[scndTempIndex] -= _temperatures[scndTempIndex] * ratio;
-        }
+        var step = 100000;
+        var diff = q - avgQ;
+        if (tempIndex > 0 && tempIndex < _temperatures.Count - 1)
+            _temperatures[tempIndex] -= _temperatures[tempIndex] * (diff / step);
+        if (tempIndex > -1 && tempIndex < _temperatures.Count - 2)
+            _temperatures[tempIndex + 1] += _temperatures[tempIndex + 1] * (diff / step);
     }
 }
