@@ -15,7 +15,7 @@ namespace FlatTubeHeatLoss.Tests
                 new(0.115, new(0.000000106, 0.000096, 0.055)),
             };
 
-            var inputData = new InputData(TubeOrientations.Sever, 700, 20, layers, 0.85);
+            var inputData = new InputData(TubeOrientations.Vertical, 700, 20, layers, 0.85);
             _library = new FlatTubeHeatLossLibrary(inputData);
         }
 

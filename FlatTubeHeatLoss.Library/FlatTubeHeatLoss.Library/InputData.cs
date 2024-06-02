@@ -23,7 +23,7 @@ namespace FlatTubeHeatLoss.Library
 
         public double TubeOrientationCoeff { get; } = tubeOrientation switch
         {
-            TubeOrientations.Sever => 2.4,
+            TubeOrientations.Vertical => 2.4,
             TubeOrientations.HorizontalUp => 3.3,
             TubeOrientations.HorizontalDown => 1.6,
             _ => throw new NotImplementedException(), 

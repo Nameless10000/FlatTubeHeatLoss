@@ -96,6 +96,7 @@ public class FlatTubeHeatLossLibrary(InputData input)
     {
         if (avgQ == q)
             return;
+
         var step = 100000;
         var diff = q - avgQ;
         if (tempIndex > 0 && tempIndex < _temperatures.Count - 1)
