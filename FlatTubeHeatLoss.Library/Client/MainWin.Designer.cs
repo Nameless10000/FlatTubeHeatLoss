@@ -59,25 +59,28 @@ namespace Client
             // 
             // InnerTemp
             // 
-            InnerTemp.Location = new Point(12, 186);
+            InnerTemp.Location = new Point(17, 310);
+            InnerTemp.Margin = new Padding(4, 5, 4, 5);
             InnerTemp.Name = "InnerTemp";
-            InnerTemp.Size = new Size(220, 23);
+            InnerTemp.Size = new Size(200, 31);
             InnerTemp.TabIndex = 0;
             InnerTemp.TextChanged += TextChangedInterceptor;
             // 
             // OutterTemp
             // 
-            OutterTemp.Location = new Point(238, 186);
+            OutterTemp.Location = new Point(225, 310);
+            OutterTemp.Margin = new Padding(4, 5, 4, 5);
             OutterTemp.Name = "OutterTemp";
-            OutterTemp.Size = new Size(226, 23);
+            OutterTemp.Size = new Size(224, 31);
             OutterTemp.TabIndex = 0;
             OutterTemp.TextChanged += TextChangedInterceptor;
             // 
             // Darkness
             // 
-            Darkness.Location = new Point(12, 243);
+            Darkness.Location = new Point(17, 405);
+            Darkness.Margin = new Padding(4, 5, 4, 5);
             Darkness.Name = "Darkness";
-            Darkness.Size = new Size(220, 23);
+            Darkness.Size = new Size(200, 31);
             Darkness.TabIndex = 0;
             Darkness.Text = "0,83";
             Darkness.TextChanged += TextChangedInterceptor;
@@ -85,9 +88,10 @@ namespace Client
             // Orientation
             // 
             Orientation.DropDownStyle = ComboBoxStyle.DropDownList;
-            Orientation.Location = new Point(238, 243);
+            Orientation.Location = new Point(225, 405);
+            Orientation.Margin = new Padding(4, 5, 4, 5);
             Orientation.Name = "Orientation";
-            Orientation.Size = new Size(226, 23);
+            Orientation.Size = new Size(224, 33);
             Orientation.TabIndex = 0;
             // 
             // layersGrid
@@ -95,26 +99,31 @@ namespace Client
             layersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             layersGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             layersGrid.Columns.AddRange(new DataGridViewColumn[] { Thickness, Material });
-            layersGrid.Location = new Point(12, 12);
+            layersGrid.Location = new Point(17, 20);
+            layersGrid.Margin = new Padding(4, 5, 4, 5);
             layersGrid.Name = "layersGrid";
-            layersGrid.Size = new Size(452, 139);
+            layersGrid.RowHeadersWidth = 62;
+            layersGrid.Size = new Size(432, 232);
             layersGrid.TabIndex = 0;
             // 
             // Thickness
             // 
             Thickness.HeaderText = "Толщина слоя, м";
+            Thickness.MinimumWidth = 8;
             Thickness.Name = "Thickness";
             // 
             // Material
             // 
             Material.HeaderText = "Материал";
+            Material.MinimumWidth = 8;
             Material.Name = "Material";
             // 
             // CalculateButton
             // 
-            CalculateButton.Location = new Point(12, 296);
+            CalculateButton.Location = new Point(17, 475);
+            CalculateButton.Margin = new Padding(4, 5, 4, 5);
             CalculateButton.Name = "CalculateButton";
-            CalculateButton.Size = new Size(452, 23);
+            CalculateButton.Size = new Size(200, 38);
             CalculateButton.TabIndex = 1;
             CalculateButton.Text = "Рассчитать";
             CalculateButton.UseVisualStyleBackColor = true;
@@ -123,36 +132,40 @@ namespace Client
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 168);
+            label1.Location = new Point(17, 280);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(133, 15);
+            label1.Size = new Size(200, 25);
             label1.TabIndex = 2;
             label1.Text = "Температура внутри, C";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(238, 168);
+            label2.Location = new Point(225, 280);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(143, 15);
+            label2.Size = new Size(213, 25);
             label2.TabIndex = 3;
             label2.Text = "Температура снаружи, C";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(238, 225);
+            label3.Location = new Point(225, 375);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(109, 15);
+            label3.Size = new Size(162, 25);
             label3.TabIndex = 5;
             label3.Text = "Положение трубы";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 225);
+            label4.Location = new Point(17, 375);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(103, 15);
+            label4.Size = new Size(153, 25);
             label4.TabIndex = 4;
             label4.Text = "Степень черноты";
             // 
@@ -163,26 +176,29 @@ namespace Client
             // QLabel
             // 
             QLabel.AutoSize = true;
-            QLabel.Location = new Point(12, 338);
+            QLabel.Location = new Point(17, 544);
+            QLabel.Margin = new Padding(4, 0, 4, 0);
             QLabel.Name = "QLabel";
-            QLabel.Size = new Size(155, 15);
+            QLabel.Size = new Size(232, 25);
             QLabel.TabIndex = 7;
             QLabel.Text = "Итоговая теплопотеря, Вт: ";
             // 
             // TempsLabel
             // 
             TempsLabel.AutoSize = true;
-            TempsLabel.Location = new Point(12, 363);
+            TempsLabel.Location = new Point(17, 586);
+            TempsLabel.Margin = new Padding(4, 0, 4, 0);
             TempsLabel.Name = "TempsLabel";
-            TempsLabel.Size = new Size(162, 15);
+            TempsLabel.Size = new Size(241, 25);
             TempsLabel.TabIndex = 8;
             TempsLabel.Text = "Температуры через слои, С:";
             // 
             // button1
             // 
-            button1.Location = new Point(304, 338);
+            button1.Location = new Point(225, 475);
+            button1.Margin = new Padding(4, 5, 4, 5);
             button1.Name = "button1";
-            button1.Size = new Size(160, 23);
+            button1.Size = new Size(224, 38);
             button1.TabIndex = 9;
             button1.Text = "Очистить";
             button1.UseVisualStyleBackColor = true;
@@ -192,9 +208,10 @@ namespace Client
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label5.Location = new Point(1139, 12);
+            label5.Location = new Point(1369, 20);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(212, 27);
+            label5.Size = new Size(316, 41);
             label5.TabIndex = 10;
             label5.Text = "Список материалов";
             // 
@@ -202,24 +219,27 @@ namespace Client
             // 
             Materials.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             Materials.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Materials.Location = new Point(955, 44);
+            Materials.Location = new Point(1143, 81);
+            Materials.Margin = new Padding(4, 5, 4, 5);
             Materials.Name = "Materials";
-            Materials.Size = new Size(580, 443);
+            Materials.RowHeadersWidth = 62;
+            Materials.Size = new Size(768, 738);
             Materials.TabIndex = 11;
             // 
             // cartesianChart1
             // 
-            cartesianChart1.Location = new Point(486, 33);
+            cartesianChart1.Location = new Point(468, 20);
+            cartesianChart1.Margin = new Padding(4, 5, 4, 5);
             cartesianChart1.Name = "cartesianChart1";
-            cartesianChart1.Size = new Size(454, 454);
+            cartesianChart1.Size = new Size(649, 757);
             cartesianChart1.TabIndex = 12;
             // 
             // MainWin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(1547, 589);
+            ClientSize = new Size(1924, 982);
             Controls.Add(cartesianChart1);
             Controls.Add(Materials);
             Controls.Add(label5);
@@ -236,6 +256,7 @@ namespace Client
             Controls.Add(Orientation);
             Controls.Add(Darkness);
             Controls.Add(layersGrid);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "MainWin";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)layersGrid).EndInit();

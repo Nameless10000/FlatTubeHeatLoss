@@ -51,7 +51,7 @@ namespace Client
             var report = lib.GetReport();
 
             QLabel.Text = $"Итоговая теплопотеря, Вт: {report.Q}";
-            TempsLabel.Text = $"Температуры через слои, С: {string.Join(",\n", report.Temperatures.Select(num => Math.Round(num, 3)))}";
+            TempsLabel.Text = $"Температуры через слои, С: \n{string.Join(",\n", report.Temperatures.Select(num => Math.Round(num, 3)))}";
 
             cartesianChart1.Series = new ISeries[]
             {
