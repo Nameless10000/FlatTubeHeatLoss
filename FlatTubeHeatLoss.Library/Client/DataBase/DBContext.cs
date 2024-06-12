@@ -492,7 +492,7 @@ namespace Client.DataBase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=C:\\Users\\Евгений\\Desktop\\Всякое непотребство\\Настечка\\FlatTubeHeatLoss.Library\\flatTubeDB.db");
+            optionsBuilder.UseSqlite("Data Source=C:\\Users\\nasti\\OneDrive\\Документы\\курсач 23-24\\FlatTubeHeatLoss\\FlatTubeHeatLoss.Library\\flatTubeDB.db");
         }
     }
 }
