@@ -1,7 +1,10 @@
 using Client.DataBase;
 using Client.DbModels;
 using FlatTubeHeatLoss.Library;
+using FlatTubeHeatLoss.Library.Models;
 using LiveChartsCore;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
@@ -51,13 +54,38 @@ namespace Client
             var report = lib.GetReport();
 
             QLabel.Text = $"Итоговая теплопотеря, Вт: {report.Q}";
-            TempsLabel.Text = $"Температуры через слои, С: {string.Join(",\n", report.Temperatures.Select(num => Math.Round(num, 3)))}";
+            TempsLabel.Text = $"Температуры через слои, °C:\n{string.Join(",\n", report.Temperatures.Select(num => Math.Round(num, 3)))}";
+
+            cartesianChart1.YAxes = new Axis[]
+            {
+                new Axis()
+                {
+                    Name = "Температура, °C"
+                }
+            };
+
+            cartesianChart1.XAxes = new Axis[]
+            {
+                new Axis()
+                {
+                    Name = "Расстояние от внутренней стенки, м"
+                }
+            };
+
+            var layerDist = new List<double>() { 0 };
+
+            var prevDist = 0.0;
+            foreach (var layer in report.Layers)
+            {
+                prevDist += layer.Width;
+                layerDist.Add(prevDist);
+            }
 
             cartesianChart1.Series = new ISeries[]
             {
-                new LineSeries<double>()
+                new LineSeries<ObservablePoint>()
                 {
-                    Values = report.Temperatures,
+                    Values = report.Temperatures.SkipLast(1).Zip(layerDist).Select(x => new ObservablePoint(x.Second, x.First)),
                     Fill = new LinearGradientPaint(SKColor.Parse("#ff2400"), SKColor.Parse("#fde910")),
                 }
             };

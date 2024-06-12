@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using static System.Math;
 
 
-namespace FlatTubeHeatLoss.Library;
+namespace FlatTubeHeatLoss.Library.Models;
 
 public class TubeLayer(double width, MaterialParams material)
 {

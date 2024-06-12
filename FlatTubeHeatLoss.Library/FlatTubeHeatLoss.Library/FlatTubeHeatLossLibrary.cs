@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Transactions;
+using FlatTubeHeatLoss.Library.Models;
 using static System.Math;
 
 namespace FlatTubeHeatLoss.Library;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlatTubeHeatLoss.Library
+namespace FlatTubeHeatLoss.Library.Models
 {
     public class MaterialParams(double a, double b, double c, string name = "Nos set")
     {

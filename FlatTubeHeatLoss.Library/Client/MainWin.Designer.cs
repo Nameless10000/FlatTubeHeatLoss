@@ -125,18 +125,18 @@ namespace Client
             label1.AutoSize = true;
             label1.Location = new Point(12, 168);
             label1.Name = "label1";
-            label1.Size = new Size(133, 15);
+            label1.Size = new Size(138, 15);
             label1.TabIndex = 2;
-            label1.Text = "Температура внутри, C";
+            label1.Text = "Температура внутри, °C";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(238, 168);
             label2.Name = "label2";
-            label2.Size = new Size(143, 15);
+            label2.Size = new Size(148, 15);
             label2.TabIndex = 3;
-            label2.Text = "Температура снаружи, C";
+            label2.Text = "Температура снаружи, °C";
             // 
             // label3
             // 

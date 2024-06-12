@@ -1,4 +1,5 @@
 using FlatTubeHeatLoss.Library;
+using FlatTubeHeatLoss.Library.Models;
 
 namespace FlatTubeHeatLoss.Tests
 {
